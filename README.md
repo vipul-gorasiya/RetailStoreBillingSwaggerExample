@@ -4,8 +4,8 @@
 * Swagger - API speicifcation and Initial Stub generation
 * Spring-boot - Rest, Web, JPA and Test implementation
 * H2 - database
-* Maven - build tool
 * Java 8
+* Maven
 
 ## Products
 *  GET /product/{productId} - get Product - to be used when product is scanned
