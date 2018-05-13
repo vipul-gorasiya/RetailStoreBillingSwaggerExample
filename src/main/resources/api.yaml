@@ -43,8 +43,8 @@ paths:
   /bill:
     post:
       tags:
-      - "store"
-      summary: "Place an order for a pet"
+      - "bill"
+      summary: "Create bill"
       description: ""
       operationId: "createBill"
       produces:
@@ -59,8 +59,8 @@ paths:
           description: "Invalid Bill"
     put:
       tags:
-      - "store"
-      summary: "Place an order for a pet"
+      - "bill"
+      summary: "Complete bill"
       description: ""
       operationId: "completeBill"
       produces:
