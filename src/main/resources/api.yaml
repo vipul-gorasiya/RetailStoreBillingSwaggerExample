@@ -1,0 +1,236 @@
+swagger: "2.0"
+info:
+  description: "service for a check out counter for an online retail store that scans products and generates an itemized bill"
+  version: "1.0.0"
+  title: "Retail Store bill generator"
+  contact:
+    email: "vipulg.001@gmail.com"
+host: "localhost"
+basePath: "/rs"
+tags:
+- name: "product"
+  description: "producct operations"
+- name: "bill"
+  description: "bill operations"
+schemes:
+- "http"
+paths:
+  /product/{productId}:
+    get:
+      tags:
+      - "product"
+      summary: "Get all products"
+      description: "Get all products"
+      operationId: "getAllProducts"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "productId"
+        in: "path"
+        description: "ID of product to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Product"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Product not found"
+  /bill:
+    post:
+      tags:
+      - "store"
+      summary: "Place an order for a pet"
+      description: ""
+      operationId: "createBill"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Bill"
+        400:
+          description: "Invalid Bill"
+    put:
+      tags:
+      - "store"
+      summary: "Place an order for a pet"
+      description: ""
+      operationId: "completeBill"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Bill to be saved"
+        required: true
+        schema:
+          $ref: "#/definitions/Bill"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Bill"
+        400:
+          description: "Invalid Bill"
+  /bill/{productId}:
+    put:
+      tags:
+      - "bill"
+      summary: "add product to bill"
+      description: ""
+      operationId: "addproduct"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "productId"
+        in: "path"
+        description: "product to be added"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Bill to be modified"
+        required: true
+        schema:
+          $ref: "#/definitions/Bill"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Bill"
+        400:
+          description: "Invalid Bill"
+    delete:
+      tags:
+      - "bill"
+      summary: "Deletes a bill item"
+      description: ""
+      operationId: "delete"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "productId"
+        in: "path"
+        description: "product which needs to be deleted"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Bill to be modified"
+        required: true
+        schema:
+          $ref: "#/definitions/Bill"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "product id not found"
+definitions:
+  Bill:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      totalCost:
+        type: "number"
+        format: "double"   
+      totalSalesTax:
+        type: "number"
+        format: "double"      
+      status:
+        type: "string"
+        description: "Bill Status"
+        enum:
+        - "inprogress"
+        - "completed"
+      billItems:
+        type: "array"
+        xml:
+          name: "tag"
+          wrapped: true
+        items:
+          $ref: "#/definitions/BillItem"
+    xml:
+      name: "Bill"
+  BillItem:
+    type: "object"
+    properties:
+      billId:
+        type: "integer"
+        format: "int64"
+      id:
+        type: "integer"
+        format: "int64"
+      itemCost:
+        type: "number"
+        format: "double"   
+      itemSalesTax:
+        type: "number"
+        format: "double"      
+      status:
+        type: "string"
+        description: "Bill Item Status"
+        enum:
+        - "added"
+        - "deleted"      
+      productId:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "BillItem"
+  Product:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string" 
+      cost:
+        type: "number"
+        format: "double"    
+      salesTax:
+        type: "number"
+        format: "double"   
+      productCategory:
+        type: "string"
+        description: "Category Type"
+        enum:
+        - "A"
+        - "B"
+        - "C"
+    xml:
+      name: "Product"
+  POSMember:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+      userStatus:
+        type: "integer"
+        format: "int32"
+        description: "User Status"
+    xml:
+      name: "POSMember"

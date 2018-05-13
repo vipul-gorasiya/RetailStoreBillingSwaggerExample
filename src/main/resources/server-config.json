@@ -1,0 +1,14 @@
+{
+	"modelPackage" : "com.vipul.retailstore.server.model",
+	"apiPackage" : "com.vipul.retailstore.server",
+	"invokerPackage" : "com.vipul.retailstore.invoker",
+	"configPackage" : "com.vipul.retailstore.config",
+	"basePackage" : "com.vipul.retailstore.server",
+	"groupId" : "com.vipul.retailstore",
+	"artifactId" : "VipulRetailStoreServerAPI",
+	"artifactVersion" : "1.0.0",
+	"java8" : true,
+	"hideGeneationTimestamp" : true,
+	"dateLibrary" : "java8",
+	"library" : "spring-boot"
+}
