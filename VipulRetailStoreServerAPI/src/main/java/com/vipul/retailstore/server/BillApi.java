@@ -72,8 +72,8 @@ public interface BillApi {
 		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 	}
 
-	@ApiOperation(value = "Place an order for a pet", nickname = "completeBill", notes = "", response = Bill.class, tags = {
-			"store", })
+	@ApiOperation(value = "complete bill", nickname = "completeBill", notes = "", response = Bill.class, tags = {
+			"bill", })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "successful operation", response = Bill.class),
 			@ApiResponse(code = 400, message = "Invalid Bill") })
 	@RequestMapping(value = "/bill", produces = { "application/xml", "application/json" }, method = RequestMethod.PUT)
@@ -90,8 +90,8 @@ public interface BillApi {
 		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 	}
 
-	@ApiOperation(value = "Place an order for a pet", nickname = "createBill", notes = "", response = Bill.class, tags = {
-			"store", })
+	@ApiOperation(value = "Create Bill", nickname = "createBill", notes = "", response = Bill.class, tags = {
+			"bill", })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "successful operation", response = Bill.class),
 			@ApiResponse(code = 400, message = "Invalid Bill") })
 	@RequestMapping(value = "/bill", produces = { "application/xml", "application/json" }, method = RequestMethod.POST)
